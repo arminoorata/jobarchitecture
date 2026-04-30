@@ -1,12 +1,13 @@
 import Link from "next/link";
 import ArchitectureExplorer from "@/components/education/ArchitectureExplorer";
-import ModuleCards from "@/components/education/ModuleCards";
 import RadfordPositioning from "@/components/education/RadfordPositioning";
+import HomePathSection from "@/components/home/HomePathSection";
+import { modules } from "@/data/modules";
 
 export const metadata = {
   title: { absolute: "Job Architecture Toolkit" },
   description:
-    "A practical job architecture education and directional leveling tool for managers, HRBPs, and Total Rewards leaders.",
+    "Free directional leveling tool and education for HRBPs, managers, and Total Rewards leaders. Built by Armi Noorata.",
 };
 
 export default function HomePage() {
@@ -26,7 +27,7 @@ export default function HomePage() {
         >
           <p className="text-sm font-semibold">Classify a role</p>
           <p className="mt-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-            Use the 3-minute directional leveling wizard.
+            Run the wizard. Three minutes. Six dimensions. A directional answer plus the things worth checking.
           </p>
         </Link>
         <Link
@@ -40,7 +41,7 @@ export default function HomePage() {
         >
           <p className="text-sm font-semibold">Teach the model</p>
           <p className="mt-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-            Walk managers through architecture, tracks, and calibration.
+            Five short modules for managers, HRBPs, and TR partners. Read one before your next leveling conversation.
           </p>
         </Link>
         <Link
@@ -54,14 +55,24 @@ export default function HomePage() {
         >
           <p className="text-sm font-semibold">Practice calibration</p>
           <p className="mt-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-            Review realistic boundary cases with discussion prompts.
+            Four real boundary cases. Predict the level, then see what evidence actually mattered.
           </p>
         </Link>
       </section>
 
-      <div className="mt-16">
-        <ModuleCards />
-      </div>
+      <section className="mt-16" aria-labelledby="home-path-title">
+        <h2 id="home-path-title" className="sr-only">
+          Pick a starting point
+        </h2>
+        <p
+          className="mb-4 max-w-3xl text-sm leading-6"
+          style={{ color: "var(--muted)" }}
+        >
+          Pick the role that fits and the module grid will lead with what
+          you&apos;ll need first.
+        </p>
+        <HomePathSection modules={modules} />
+      </section>
 
       <div className="mt-16">
         <RadfordPositioning />
