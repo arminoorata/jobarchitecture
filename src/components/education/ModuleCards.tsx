@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { educationModules } from "@/data/architecture";
+import { modules } from "@/data/modules";
 
 export default function ModuleCards() {
   return (
@@ -30,7 +30,7 @@ export default function ModuleCards() {
       </div>
 
       <div className="mt-7 grid gap-4 md:grid-cols-2">
-        {educationModules.map((module) => (
+        {modules.map((module) => (
           <article
             key={module.id}
             className="rounded-[var(--radius-card)] border p-5"
@@ -54,7 +54,7 @@ export default function ModuleCards() {
               {module.title}
             </h3>
             <p className="mt-3 text-sm leading-6" style={{ color: "var(--muted)" }}>
-              {module.summary}
+              {module.blurb}
             </p>
           </article>
         ))}

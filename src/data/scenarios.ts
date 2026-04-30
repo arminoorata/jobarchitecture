@@ -31,7 +31,7 @@ export const scenarios: Scenario[] = [
       "Not yet setting multi-domain technology strategy.",
       "Scope is broad within a domain, not enterprise-wide.",
     ],
-    recommendedBand: "P4/P5 boundary",
+    recommendedBand: "P4 (boundary P4/P5)",
     calibrationQuestion:
       "Would the next level require influence across multiple platforms or a company-wide technical standard?",
   },
@@ -55,7 +55,7 @@ export const scenarios: Scenario[] = [
       "Scope is one planning process, not the whole finance function.",
       "Strategy ownership is limited.",
     ],
-    recommendedBand: "M3/M4 boundary",
+    recommendedBand: "M3 (boundary M3/M4)",
     calibrationQuestion:
       "Is the role managing a team within a process or accountable for a broader finance domain?",
   },
@@ -79,7 +79,7 @@ export const scenarios: Scenario[] = [
       "Enterprise portfolio choices still sit above the role.",
       "Scope depends on revenue size and strategic importance of the region.",
     ],
-    recommendedBand: "E1/E2 boundary",
+    recommendedBand: "E1 (boundary E1/E2)",
     calibrationQuestion:
       "Is this an executive role because of strategy ownership, or a senior sales management role because of operating scale?",
   },

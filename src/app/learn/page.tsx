@@ -1,4 +1,4 @@
-import { educationModules } from "@/data/architecture";
+import { modules } from "@/data/modules";
 
 export const metadata = {
   title: "Learn",
@@ -27,7 +27,7 @@ export default function LearnPage() {
       </section>
 
       <div className="mt-10 space-y-8">
-        {educationModules.map((module) => (
+        {modules.map((module) => (
           <article
             key={module.id}
             id={module.id}
@@ -57,40 +57,38 @@ export default function LearnPage() {
               </p>
             </div>
             <p className="mt-4 max-w-3xl leading-7" style={{ color: "var(--muted)" }}>
-              {module.summary}
+              {module.blurb}
             </p>
 
             <div className="mt-8 space-y-6">
-              {module.sections.map((section) => (
-                <section key={section.heading}>
-                  <h3 className="text-xl font-semibold tracking-tight">
-                    {section.heading}
-                  </h3>
-                  <p className="mt-3 leading-7" style={{ color: "var(--muted)" }}>
-                    {section.body}
-                  </p>
-                  <p
-                    className="mt-3 rounded-[8px] border p-4 text-sm leading-6"
-                    style={{
-                      borderColor: "var(--line)",
-                      background: "var(--bg-alt)",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    <span className="font-semibold" style={{ color: "var(--text)" }}>
-                      Manager move:
-                    </span>{" "}
-                    {section.managerMove}
-                  </p>
-                </section>
-              ))}
+              {module.sections.map((section) => {
+                const previewText = section.blocks
+                  .filter(
+                    (block): block is Extract<typeof block, { type: "paragraph" }> =>
+                      block.type === "paragraph",
+                  )
+                  .map((block) => block.text)
+                  .join(" ");
+                return (
+                  <section key={section.id}>
+                    <h3 className="text-xl font-semibold tracking-tight">
+                      {section.heading}
+                    </h3>
+                    {previewText ? (
+                      <p className="mt-3 leading-7" style={{ color: "var(--muted)" }}>
+                        {previewText}
+                      </p>
+                    ) : null}
+                  </section>
+                );
+              })}
             </div>
 
             <div className="mt-8 border-t pt-6" style={{ borderColor: "var(--line)" }}>
-              <p className="text-sm font-semibold">Readiness checks</p>
+              <p className="text-sm font-semibold">Take these to your next conversation</p>
               <ul className="mt-3 grid gap-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-                {module.checks.map((check) => (
-                  <li key={check}>- {check}</li>
+                {module.questions.map((question) => (
+                  <li key={question}>- {question}</li>
                 ))}
               </ul>
             </div>

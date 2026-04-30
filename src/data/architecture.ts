@@ -1,17 +1,3 @@
-export type EducationModule = {
-  id: string;
-  title: string;
-  minutes: number;
-  audience: string;
-  summary: string;
-  sections: Array<{
-    heading: string;
-    body: string;
-    managerMove: string;
-  }>;
-  checks: string[];
-};
-
 export type ArchitectureLayer = {
   label: string;
   example: string;
@@ -79,189 +65,6 @@ export const architectureLayers: ArchitectureLayer[] = [
       "The external comparison point used for market pricing. This is where licensed survey tools are strongest.",
     managerQuestion:
       "Which external survey role is closest in work, level, and talent market?",
-  },
-];
-
-export const educationModules: EducationModule[] = [
-  {
-    id: "architecture",
-    title: "Job Architecture 101",
-    minutes: 8,
-    audience: "New and experienced people leaders",
-    summary:
-      "A practical model for organizing work before debating pay, titles, or promotions.",
-    sections: [
-      {
-        heading: "Start with the work, not the person",
-        body:
-          "Job architecture is the system that organizes roles by function, family, career track, level, and title. The cleanest conversations separate the job from the person in the job. Performance, potential, tenure, and retention risk matter, but they are different decisions.",
-        managerMove:
-          "Describe the job as if you were backfilling it tomorrow. Then level that job description.",
-      },
-      {
-        heading: "Architecture is the spine of Total Rewards",
-        body:
-          "Leveling feeds salary structures, equity guidelines, bonus eligibility, pay equity analytics, workforce planning, and career paths. When architecture is vague, every downstream reward program becomes harder to explain.",
-        managerMove:
-          "Before requesting a title or pay change, identify which architecture element actually changed.",
-      },
-      {
-        heading: "Radford/Aon is a strong market reference point",
-        body:
-          "Aon publicly describes job architecture around functions, job families, jobs, career levels, titles, and market data. Their Radford McLagan Compensation Database is built for compensation benchmarking across jobs, countries, industries, and peer groups. This tool uses that public mental model as an example and points users toward licensed Radford/Aon resources for production benchmarking.",
-        managerMove:
-          "Use this tool for education and directional sizing. Use licensed survey data and internal calibration for formal pay decisions.",
-      },
-    ],
-    checks: [
-      "Can you state the role's function and family in one sentence?",
-      "Can you explain the level without mentioning the incumbent's tenure?",
-      "Can another HRBP apply the same logic and reach a similar answer?",
-    ],
-  },
-  {
-    id: "leveling",
-    title: "How Leveling Works",
-    minutes: 10,
-    audience: "Managers making role or promotion requests",
-    summary:
-      "The six dimensions that usually decide whether a role is junior, mid, senior, principal, director, or executive.",
-    sections: [
-      {
-        heading: "Scope is the first anchor",
-        body:
-          "Scope asks what the role owns. A task, a project, a product area, a function, a region, or the enterprise. Managers often over-index on difficulty while under-describing scope.",
-        managerMove:
-          "Write the largest recurring outcome the role owns without help from the manager.",
-      },
-      {
-        heading: "Complexity is about ambiguity",
-        body:
-          "Complexity is not workload volume. It is the level of ambiguity, tradeoffs, risk, and systems thinking required to reach a sound answer.",
-        managerMove:
-          "Ask whether the role follows known playbooks, adapts playbooks, or creates new ones.",
-      },
-      {
-        heading: "Influence separates senior from simply experienced",
-        body:
-          "Higher-level roles move work through others. They create alignment, change priorities, set standards, or influence leaders who do not report to them.",
-        managerMove:
-          "Name the stakeholders whose decisions change because this role exists.",
-      },
-    ],
-    checks: [
-      "Is the evidence about job size rather than performance?",
-      "Did you consider scope, complexity, autonomy, influence, knowledge, and business impact?",
-      "Would a lower-level role reasonably struggle with this work even with coaching?",
-    ],
-  },
-  {
-    id: "tracks",
-    title: "IC, Manager, and Executive Tracks",
-    minutes: 9,
-    audience: "Managers designing teams",
-    summary:
-      "How expert, people-leadership, and enterprise-strategy roles create different kinds of leverage.",
-    sections: [
-      {
-        heading: "IC roles scale through expertise",
-        body:
-          "Individual contributors grow by solving broader or more ambiguous problems, setting technical or functional standards, and influencing work beyond their own deliverables.",
-        managerMove:
-          "Do not use people management as the only route to growth for deep experts.",
-      },
-      {
-        heading: "Manager roles scale through teams",
-        body:
-          "People leadership adds accountability for hiring, coaching, performance, resource allocation, and operating rhythm. A lead who coordinates work is different from a manager accountable for the team system.",
-        managerMove:
-          "Clarify whether the role owns people outcomes or only project coordination.",
-      },
-      {
-        heading: "Executive roles scale through strategy",
-        body:
-          "Executive roles shape direction across functions, regions, business units, or the enterprise. They operate through strategy, resource choices, risk management, and external or board-level influence.",
-        managerMove:
-          "Look for durable ownership of strategy, not just attendance in senior forums.",
-      },
-    ],
-    checks: [
-      "Does the role's leverage come from expertise, people systems, or enterprise direction?",
-      "Is the requested track consistent with how the role actually spends time?",
-      "Would the level still fit if the incumbent left?",
-    ],
-  },
-  {
-    id: "calibration",
-    title: "Calibration",
-    minutes: 11,
-    audience: "HRBPs and Total Rewards leaders",
-    summary:
-      "A facilitation model for making leveling decisions consistent across teams and business units.",
-    sections: [
-      {
-        heading: "Calibration is a conversation, not a vote",
-        body:
-          "The best calibration sessions compare evidence across similar roles. The goal is not to win the highest level. It is to make the architecture durable enough that leaders can explain decisions consistently.",
-        managerMove:
-          "Bring two peer roles: one that is clearly lower and one that is clearly higher.",
-      },
-      {
-        heading: "Use boundary cases deliberately",
-        body:
-          "Borderline roles are valuable because they reveal how your company interprets scope and impact. Document why a role landed on one side of the boundary.",
-        managerMove:
-          "Ask what must change in the job for the next level to become obvious.",
-      },
-      {
-        heading: "Govern exceptions",
-        body:
-          "Exceptions happen, especially in fast-moving businesses. What matters is whether they are named, time-bound, and reviewed. Hidden exceptions become precedent.",
-        managerMove:
-          "Label exceptions as exceptions and give them a review date.",
-      },
-    ],
-    checks: [
-      "Did the group compare jobs of similar family and track?",
-      "Did anyone confuse pay pressure with job size?",
-      "Did you capture the decision rationale in plain language?",
-    ],
-  },
-  {
-    id: "pay-transparency",
-    title: "Pay Transparency Readiness",
-    minutes: 7,
-    audience: "Senior HR and business leaders",
-    summary:
-      "Why clean job architecture makes pay ranges, progression, and employee communication easier to defend.",
-    sections: [
-      {
-        heading: "Transparency exposes messy architecture",
-        body:
-          "When ranges are posted or shared, employees compare titles, levels, and pay. If titles are inflated or levels are inconsistent, trust erodes fast.",
-        managerMove:
-          "Review title-level consistency before broad pay range communication.",
-      },
-      {
-        heading: "Architecture supports pay equity analysis",
-        body:
-          "Pay equity analytics depend on grouping comparable work. If job families and levels are inconsistent, the analysis becomes noisier and harder to act on.",
-        managerMove:
-          "Use architecture cleanup as a prerequisite to pay equity remediation planning.",
-      },
-      {
-        heading: "Maintenance is part of the system",
-        body:
-          "Roles change, markets move, skills emerge, and businesses reorganize. A job architecture that is never maintained becomes a historical artifact.",
-        managerMove:
-          "Set a lightweight quarterly process for new roles, title exceptions, and level boundary questions.",
-      },
-    ],
-    checks: [
-      "Can managers explain what differentiates adjacent levels?",
-      "Can employees see a credible path from one level to the next?",
-      "Can Total Rewards connect levels to market data and pay ranges?",
-    ],
   },
 ];
 
@@ -335,6 +138,41 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Aon's proprietary job evaluation methodology, referenced here only as a licensed Aon offering.",
     useWhen:
       "Use it when pointing leaders toward Aon for formal methodology and consulting support.",
+  },
+  {
+    term: "Calibration evidence",
+    plain:
+      "A description of the job, not the person, that supports placing the role at a level.",
+    useWhen:
+      "Use it during calibration sessions when separating leveling from performance, retention, or pay pressure.",
+  },
+  {
+    term: "Boundary case",
+    plain:
+      "A role whose evidence sits within ±0.2 of an adjacent level threshold.",
+    useWhen:
+      "Use it when documenting why a role landed on one side of a level edge so future calibrations can reference the rationale.",
+  },
+  {
+    term: "Track",
+    plain:
+      "The career path by which a role scales: individual contributor, people manager, or executive.",
+    useWhen:
+      "Use it when deciding whether a role's growth comes through expertise, teams, or strategy.",
+  },
+  {
+    term: "Dual ladder",
+    plain:
+      "An architecture that gives parallel growth paths for IC and manager roles, with comparable seniority at equivalent levels.",
+    useWhen:
+      "Use it when a deep expert shouldn't be forced into management to keep advancing.",
+  },
+  {
+    term: "Title inflation",
+    plain:
+      "The drift of titles upward without a corresponding change in scope, complexity, or impact.",
+    useWhen:
+      "Use it when explaining why a posted range or a new hire title looks off relative to the architecture.",
   },
 ];
 
