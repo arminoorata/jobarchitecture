@@ -72,10 +72,11 @@ export function Paragraph({ text }: Props) {
                     </sup>
                   );
                 }
+                const anchor = sourceAnchorFor(id) ?? "sources";
                 return (
                   <sup key={`${id}-${j}`} className="ml-0.5">
                     <a
-                      href={`/methodology#sources`}
+                      href={`/methodology#${anchor}`}
                       className="font-medium focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{ color: "var(--accent)", outlineColor: "var(--accent)" }}
                       aria-label={`Source ${number}: ${id}`}
@@ -99,11 +100,13 @@ export function Paragraph({ text }: Props) {
   );
 }
 
-// The `sourceNotes` array doesn't carry an explicit id field, so we map
-// the inline marker ids that modules.ts uses today to a substring of the
-// canonical `label`. Add a new entry whenever a module references a new
-// source. The substring match is case-insensitive so the canonical label
-// stays the source of truth.
+// Inline marker ids used in module copy resolve to a `sourceNotes` entry in
+// this priority order:
+//   1. Exact match against `sourceNote.id` (the canonical slug field).
+//   2. Substring alias on `label` (legacy — kept for older marker ids).
+//   3. Two-way slug containment on `label` (last-resort fallback).
+// Whenever you add a new source, set its `id` field. Whenever you reference
+// a source from module copy, use that same id verbatim.
 const SOURCE_ID_ALIASES: Record<string, string> = {
   "aon-architecture": "aon job architecture",
   "rmcd-features": "reporting features",
@@ -111,7 +114,24 @@ const SOURCE_ID_ALIASES: Record<string, string> = {
   "aon-comp-101": "compensation 101",
 };
 
+/**
+ * Returns the anchor id (e.g. `sources-aon-architecture`) for a given marker id
+ * by resolving it to a `sourceNote` and reading that note's `id` field.
+ */
+function sourceAnchorFor(markerId: string): string | null {
+  const number = sourceNumberFor(markerId);
+  if (number === null) return null;
+  const note = sourceNotes[number - 1];
+  if (note?.id) return `sources-${note.id}`;
+  return null;
+}
+
 function sourceNumberFor(id: string): number | null {
+  // Step 1: exact id match (preferred, since Phase 8 added `id` to SourceNote).
+  const directIdx = sourceNotes.findIndex((n) => n.id === id);
+  if (directIdx >= 0) return directIdx + 1;
+
+  // Step 2: legacy alias substring on label.
   const lookup = SOURCE_ID_ALIASES[id];
   if (lookup) {
     const idx = sourceNotes.findIndex((n) =>
@@ -119,7 +139,7 @@ function sourceNumberFor(id: string): number | null {
     );
     if (idx >= 0) return idx + 1;
   }
-  // Fallback: try slug containment in either direction so an exact label
+  // Step 3: slug containment in either direction so an exact label
   // match still resolves without an alias entry.
   const slugOf = (s: string) =>
     s

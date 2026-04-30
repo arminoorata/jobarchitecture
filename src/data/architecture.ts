@@ -12,6 +12,13 @@ export type GlossaryTerm = {
 };
 
 export type SourceNote = {
+  /**
+   * Stable slug used to deep-link to a source note on the methodology page
+   * (e.g. `/methodology#sources-aon-architecture`) and to resolve inline
+   * source-note markers in `Paragraph.tsx` (e.g. `(see [src/aon-architecture])`).
+   * Must stay in sync with `SOURCE_ID_ALIASES` in `Paragraph.tsx`.
+   */
+  id?: string;
   label: string;
   href: string;
   note: string;
@@ -178,24 +185,28 @@ export const glossaryTerms: GlossaryTerm[] = [
 
 export const sourceNotes: SourceNote[] = [
   {
+    id: "aon-architecture",
     label: "Aon Job Architecture",
     href: "https://www.aon.com/en/capabilities/talent-and-rewards/job-architecture",
     note:
       "Public Aon material frames job architecture around functions, families, jobs, career levels, and titles, and connects it to compensation, career frameworks, pay equity, and pay transparency.",
   },
   {
+    id: "rmcd-features",
     label: "Radford McLagan Compensation Database reporting features",
     href: "https://www.aon.com/en/capabilities/human-capital-analytics/radford-mclagan-compensation-database/reporting-features",
     note:
       "Aon describes the database as a major source of compensation data and tools for benchmarking, peer groups, job matching, employee-vs-market analysis, and executive regression.",
   },
   {
+    id: "rmcd-job-offers",
     label: "Radford McLagan Job Offers Data",
     href: "https://www.aon.com/en/capabilities/human-capital-analytics/radford-mclagan-compensation-database/job-offers-data",
     note:
       "Aon states that Job Offers Data and RMCD data use a consistent job architecture and leveling structure for apples-to-apples comparisons.",
   },
   {
+    id: "aon-comp-101",
     label: "Aon Compensation 101",
     href: "https://rewards.aon.com/en-us/insights/compensation-101/how-much-to-pay-rewards-program-design",
     note:
