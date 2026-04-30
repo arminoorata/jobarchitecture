@@ -1,11 +1,13 @@
+import type { Metadata } from "next";
 import { modules } from "@/data/modules";
 import HomePathSection from "@/components/home/HomePathSection";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: { absolute: "Learn · Job Architecture Toolkit" },
+export const metadata: Metadata = pageMetadata({
+  title: "Learn",
   description:
     "Five short modules: architecture basics, leveling dimensions, IC/manager/exec tracks, calibration, pay transparency.",
-};
+});
 
 export default function LearnPage() {
   return (

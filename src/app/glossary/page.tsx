@@ -1,11 +1,12 @@
+import type { Metadata } from "next";
 import { glossaryTerms } from "@/data/architecture";
 import { GlossaryList } from "@/components/glossary/GlossaryList";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Glossary · Job Architecture Toolkit",
-  description:
-    "Plain-language definitions for the words this toolkit uses.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Glossary",
+  description: "Plain-language definitions for the words this toolkit uses.",
+});
 
 export default function GlossaryPage() {
   return (

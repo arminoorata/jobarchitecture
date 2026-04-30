@@ -1,10 +1,12 @@
+import type { Metadata } from "next";
 import LevelingWizard from "@/components/leveling/LevelingWizard";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Leveling Tool",
+export const metadata: Metadata = pageMetadata({
+  title: "Leveling Wizard",
   description:
-    "A client-side directional job level classification wizard for HRBPs and managers.",
-};
+    "Three-minute directional leveling wizard. Six dimensions, weighted score, confidence rating, boundary detection.",
+});
 
 export default function LevelingPage() {
   return (

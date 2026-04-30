@@ -1,10 +1,12 @@
+import type { Metadata } from "next";
 import { sourceNotes } from "@/data/architecture";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Methodology",
   description:
     "How the scoring works, what the confidence rating means, sources, and limitations.",
-};
+});
 
 type TocEntry = { id: string; label: string };
 

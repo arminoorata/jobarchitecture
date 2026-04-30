@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { modules } from "@/data/modules";
 import { ModuleRenderer } from "@/components/learn/ModuleRenderer";
+import { pageMetadata } from "@/lib/seo";
 
 type Params = { id: string };
 
@@ -23,10 +24,11 @@ export async function generateMetadata({
       description: "This module is not part of the toolkit.",
     };
   }
-  return {
-    title: { absolute: `${module.title} · Job Architecture Toolkit` },
+  return pageMetadata({
+    title: module.title,
     description: module.blurb,
-  };
+    openGraphType: "article",
+  });
 }
 
 export default async function ModulePage({

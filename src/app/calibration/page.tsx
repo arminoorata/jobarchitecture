@@ -1,10 +1,12 @@
+import type { Metadata } from "next";
 import CalibrationLab from "@/components/calibration/CalibrationLab";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Calibration Lab",
   description:
-    "Interactive role scenarios and facilitation prompts for job leveling calibration.",
-};
+    "Predict-then-reveal practice on four real boundary cases: IC, manager, executive, HRBP.",
+});
 
 export default function CalibrationPage() {
   return (

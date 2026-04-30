@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s · Job Architecture Toolkit",
   },
   description:
-    "A self-serve job architecture education and directional job leveling tool for HRBPs, managers, and Total Rewards leaders.",
+    "Free directional leveling tool and education for HRBPs, managers, and Total Rewards leaders. Built by Armi Noorata.",
   applicationName: "Job Architecture Toolkit",
   authors: [{ name: "Armi Noorata", url: "https://arminoorata.com" }],
   creator: "Armi Noorata",
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     siteName: "Job Architecture Toolkit",
     title: "Job Architecture Toolkit",
     description:
-      "A practical education and directional leveling tool for managers, HRBPs, and Total Rewards leaders.",
+      "Free directional leveling tool and education for HRBPs, managers, and Total Rewards leaders. Built by Armi Noorata.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Job Architecture Toolkit",
     description:
-      "A practical education and directional leveling tool for job architecture conversations.",
+      "Free directional leveling tool and education for HRBPs, managers, and Total Rewards leaders. Built by Armi Noorata.",
     creator: "@arminoorata",
   },
 };

@@ -4,8 +4,9 @@ import RadfordPositioning from "@/components/education/RadfordPositioning";
 import HomePathSection from "@/components/home/HomePathSection";
 import { modules } from "@/data/modules";
 
-export const metadata = {
-  title: { absolute: "Job Architecture Toolkit" },
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   description:
     "Free directional leveling tool and education for HRBPs, managers, and Total Rewards leaders. Built by Armi Noorata.",
 };
