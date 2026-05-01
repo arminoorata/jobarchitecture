@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 import type { LearnModule } from "@/data/modules";
 import { learningPaths, type LearningPathId } from "@/data/learning-paths";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
@@ -38,26 +38,19 @@ export function LearnModuleGrid({ modules, pathId }: Props) {
     return result;
   }, [modules, pathId]);
 
-  // Track the previous order signature so we only animate on actual changes.
+  // Order signature drives the CSS animation key. When the signature changes,
+  // the grid remounts and replays the fade-in. Reduced-motion users skip the
+  // animation entirely. No setState-in-effect cascading-render risk.
   const orderSignature = ordered.map((m) => m.id).join("|");
-  const prevSignature = useRef(orderSignature);
-  const [animating, setAnimating] = useState(false);
-
-  useEffect(() => {
-    if (prevSignature.current === orderSignature) return;
-    prevSignature.current = orderSignature;
-    if (prefersReducedMotion) return;
-    setAnimating(true);
-    const timer = window.setTimeout(() => setAnimating(false), 200);
-    return () => window.clearTimeout(timer);
-  }, [orderSignature, prefersReducedMotion]);
 
   return (
     <div
+      key={orderSignature}
       className="grid gap-4 md:grid-cols-2"
       style={{
-        opacity: animating ? 0.5 : 1,
-        transition: prefersReducedMotion ? "none" : "opacity 200ms ease-out",
+        animation: prefersReducedMotion
+          ? "none"
+          : "modulegrid-fade 200ms ease-out",
       }}
     >
       {ordered.map((module) => (

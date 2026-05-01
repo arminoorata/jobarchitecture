@@ -17,16 +17,16 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const module = modules.find((m) => m.id === id);
-  if (!module) {
+  const learnModule = modules.find((m) => m.id === id);
+  if (!learnModule) {
     return {
       title: "Module not found",
       description: "This module is not part of the toolkit.",
     };
   }
   return pageMetadata({
-    title: module.title,
-    description: module.blurb,
+    title: learnModule.title,
+    description: learnModule.blurb,
     openGraphType: "article",
   });
 }
@@ -37,8 +37,8 @@ export default async function ModulePage({
   params: Promise<Params>;
 }) {
   const { id } = await params;
-  const module = modules.find((m) => m.id === id);
-  if (!module) notFound();
+  const learnModule = modules.find((m) => m.id === id);
+  if (!learnModule) notFound();
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16">
@@ -68,10 +68,10 @@ export default async function ModulePage({
             </Link>
           </li>
           <li aria-hidden="true">›</li>
-          <li style={{ color: "var(--text)" }}>{module.title}</li>
+          <li style={{ color: "var(--text)" }}>{learnModule.title}</li>
         </ol>
       </nav>
-      <ModuleRenderer module={module} />
+      <ModuleRenderer module={learnModule} />
     </main>
   );
 }

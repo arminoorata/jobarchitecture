@@ -348,6 +348,16 @@ html[data-theme="light"] .theme-icon-sun {
   }
 }
 
+/* Module grid fade. Replays when the order signature changes (path picked). */
+@keyframes modulegrid-fade {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .btn {
   --btn-fill: var(--button-fill);
   display: inline-flex;

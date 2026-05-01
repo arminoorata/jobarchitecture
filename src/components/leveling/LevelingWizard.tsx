@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 import {
   dimensions,
   roleTypeOptions,
@@ -703,19 +704,9 @@ function QuestionStep({
   onSkipToReview: () => void;
 }) {
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // Track reduced-motion preference. When true, the wizard does not auto-advance
-  // and shows an explicit Continue button per spec §9.4.
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(query.matches);
-    const handler = (event: MediaQueryListEvent) =>
-      setReducedMotion(event.matches);
-    query.addEventListener("change", handler);
-    return () => query.removeEventListener("change", handler);
-  }, []);
+  // When true, the wizard does not auto-advance and shows an explicit Continue
+  // button per spec §9.4.
+  const reducedMotion = useReducedMotion();
 
   // Cancel pending auto-advance on unmount or dimension change.
   useEffect(() => {
