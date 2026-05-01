@@ -117,8 +117,8 @@ const PREDICT_INTRO_HEAD = "What level would you give this role?";
 const PREDICT_INTRO_BODY =
   "Read the facts. Pick the band you'd argue for in a calibration session, then see how your reasoning lines up with the recommended answer. There's no scoring. You're building the muscle.";
 
-const REFLECT_PROMPT =
-  "What single piece of evidence in this scenario would change the band? Hold that up against the role you actually had in mind when you read this.";
+const EVIDENCE_PROMPT =
+  "What single piece of evidence would change the band? Hold that up against the role you actually had in mind when you read this.";
 
 export default function CalibrationLab() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -167,19 +167,20 @@ export default function CalibrationLab() {
         >
           Calibration lab
         </p>
-        <h1
+        <h2
           id="calibration-title"
-          className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-5xl"
+          className="mt-4 text-2xl font-semibold leading-tight tracking-tight md:text-3xl"
         >
           Practice calibration on real boundary cases.
-        </h1>
+        </h2>
         <p
           className="mt-5 max-w-3xl leading-7"
           style={{ color: "var(--muted)" }}
         >
-          Each one is a role I&rsquo;ve actually leveled. Read the facts, pick
-          a band, then compare your reasoning against the recommended answer.
-          The watch-outs are where most calibration sessions land in practice.
+          Each scenario is the kind of role calibration committees argue
+          about every quarter. Read the facts, pick a band, then compare your
+          reasoning against the recommended answer. The watch-outs are where
+          most calibration sessions land in practice.
         </p>
       </header>
 
@@ -595,20 +596,22 @@ function RevealStep({
       <CalibrationQuestionBlock question={scenario.calibrationQuestion} />
 
       <section
+        aria-labelledby="evidence-change-heading"
         className="rounded-[8px] border p-5"
         style={{ borderColor: "var(--line)", background: "var(--bg-alt)" }}
       >
         <p
+          id="evidence-change-heading"
           className="text-xs font-semibold uppercase tracking-[0.22em]"
           style={{ color: "var(--text-muted)" }}
         >
-          Reflect
+          What would change the answer
         </p>
         <p
           className="mt-2 text-sm leading-6"
           style={{ color: "var(--muted)" }}
         >
-          {REFLECT_PROMPT}
+          {EVIDENCE_PROMPT}
         </p>
       </section>
 

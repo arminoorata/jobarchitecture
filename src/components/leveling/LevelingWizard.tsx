@@ -297,9 +297,9 @@ export default function LevelingWizard() {
               >
                 Directional leveling
               </p>
-              <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
                 Classify a role in under 3 minutes.
-              </h1>
+              </h2>
             </div>
             {step !== "role" || showUnsure ? (
               <button

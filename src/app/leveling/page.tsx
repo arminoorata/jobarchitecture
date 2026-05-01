@@ -19,7 +19,7 @@ export default function LevelingPage() {
           Applied learning
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-          Size the job. Get coaching, not a verdict.
+          Size the job. Walk away with coaching.
         </h1>
         <p className="mt-3 leading-7" style={{ color: "var(--muted)" }}>
           Six dimensions, three minutes, one directional read. The result
