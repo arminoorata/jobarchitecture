@@ -20,7 +20,7 @@ export default function RadfordPositioning() {
         id="radford-positioning-title"
         className="mt-4 text-3xl font-semibold tracking-tight"
       >
-        Use this as the prep room, not the licensed methodology.
+        Where this tool sits next to licensed Radford and Aon work.
       </h2>
       <div className="mt-5 grid gap-5 text-sm leading-6 md:grid-cols-3">
         <div>

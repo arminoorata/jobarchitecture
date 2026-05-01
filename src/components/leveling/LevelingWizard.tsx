@@ -865,8 +865,8 @@ function QuestionStep({
         className="mt-4 text-xs italic"
         style={{ color: "var(--text-muted)" }}
       >
-        Pick the option that fits the role most of the time, not the rare
-        extreme. Boundary cases work themselves out at the end.
+        Pick the option that fits how the role usually works. Boundary cases
+        work themselves out at the end.
       </p>
 
       {hasValidationError ? (

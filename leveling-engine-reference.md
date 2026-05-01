@@ -155,7 +155,7 @@ Prompt: *Whose decisions does the role change?*
 |---|---|---|
 | 1 | Immediate team | Influences day-to-day work with close peers. |
 | 2 | Adjacent partners | Coordinates with common partners or internal customers. |
-| 3 | Project stakeholders | Builds alignment across several teams for project outcomes. |
+| 3 | Cross-team project partners | Builds alignment across several teams for project outcomes. |
 | 4 | Cross-functional leaders | Shapes decisions across functions without direct authority. |
 | 5 | Senior leaders in a domain | Influences investment, standards, or operating choices. |
 | 6 | Business unit or regional leaders | Aligns leaders across major parts of the business. |

@@ -47,7 +47,7 @@ export const architectureLayers: ArchitectureLayer[] = [
     explanation:
       "The path by which work increases in value. Strong architectures let experts grow without forcing them into management.",
     managerQuestion:
-      "Does the role create leverage through expertise, people leadership, or enterprise strategy?",
+      "Does the role scale through expertise, people leadership, or enterprise strategy?",
   },
   {
     label: "Level",

@@ -237,7 +237,7 @@ const AUTONOMY_EXAMPLES: Record<number, string> = {
   3: "Familiar work runs solo. New or sensitive work gets a quick alignment first.",
   4: "Goals come from above. The role decides how to hit them and aligns periodically.",
   5: "Broad direction lands in the inbox. The role figures out priorities and tradeoffs.",
-  6: "The role sets the operating plan others run against, with leadership weighing in on shape, not detail.",
+  6: "The role owns the operating plan others run against, with periodic check-ins on overall framing.",
   7: "Few precedents, fewer guardrails. The role calls the direction and owns the consequences.",
 };
 

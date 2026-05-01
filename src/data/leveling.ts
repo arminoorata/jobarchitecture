@@ -120,7 +120,7 @@ export const dimensions: Dimension[] = [
     options: sevenPoint([
       ["Immediate team", "Influences day-to-day work with close peers."],
       ["Adjacent partners", "Coordinates with common partners or internal customers."],
-      ["Project stakeholders", "Builds alignment across several teams for project outcomes."],
+      ["Cross-team project partners", "Builds alignment across several teams for project outcomes."],
       ["Cross-functional leaders", "Shapes decisions across functions without direct authority."],
       ["Senior leaders in a domain", "Influences investment, standards, or operating choices."],
       ["Business unit or regional leaders", "Aligns leaders across major parts of the business."],
@@ -218,19 +218,19 @@ export const roleTypeOptions: Array<{
     id: "ic",
     title: "Individual Contributor",
     body:
-      "The role creates leverage through expertise, problem-solving, and influence without formal people leadership.",
+      "The role scales through expertise, problem-solving, and influence without formal people leadership.",
   },
   {
     id: "manager",
     title: "People Manager",
     body:
-      "The role creates leverage through people systems, coaching, staffing, and accountable team outcomes.",
+      "The role scales through people systems, coaching, staffing, and accountable team outcomes.",
   },
   {
     id: "executive",
     title: "Executive",
     body:
-      "The role creates leverage through enterprise, regional, business unit, or functional strategy.",
+      "The role scales through enterprise, regional, business unit, or functional strategy.",
   },
   {
     id: "unsure",
