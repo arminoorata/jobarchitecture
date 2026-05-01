@@ -18,7 +18,7 @@ export default function HomePage() {
 
       <section className="mt-12 grid gap-4 md:grid-cols-3" aria-label="Primary actions">
         <Link
-          href="/leveling"
+          href="/learn"
           className="rounded-[var(--radius-card)] border p-5 transition-colors"
           style={{
             borderColor: "var(--accent)",
@@ -26,13 +26,13 @@ export default function HomePage() {
             color: "var(--text)",
           }}
         >
-          <p className="text-sm font-semibold">Classify a role</p>
+          <p className="text-sm font-semibold">Start with the model</p>
           <p className="mt-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-            Run the wizard. Three minutes. Six dimensions. A directional answer plus the things worth checking.
+            Five short modules for busy managers, HRBPs, and TR partners. Pick the task you showed up to do and the modules reorder around it.
           </p>
         </Link>
         <Link
-          href="/learn"
+          href="/leveling"
           className="rounded-[var(--radius-card)] border p-5 transition-colors"
           style={{
             borderColor: "var(--line)",
@@ -40,9 +40,9 @@ export default function HomePage() {
             color: "var(--text)",
           }}
         >
-          <p className="text-sm font-semibold">Teach the model</p>
+          <p className="text-sm font-semibold">Try the leveling wizard</p>
           <p className="mt-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-            Five short modules for managers, HRBPs, and TR partners. Read one before your next leveling conversation.
+            Three minutes, six dimensions, a directional read with coaching. Use it to sharpen the leveling conversation you&apos;re about to have.
           </p>
         </Link>
         <Link
@@ -56,7 +56,7 @@ export default function HomePage() {
         >
           <p className="text-sm font-semibold">Practice calibration</p>
           <p className="mt-2 text-sm leading-6" style={{ color: "var(--muted)" }}>
-            Four real boundary cases. Predict the level, then see what evidence actually mattered.
+            Four real boundary cases. Pick the band you would defend, then see what evidence actually mattered and what changes the call.
           </p>
         </Link>
       </section>
@@ -69,7 +69,7 @@ export default function HomePage() {
           className="mb-4 max-w-3xl text-sm leading-6"
           style={{ color: "var(--muted)" }}
         >
-          Pick the role that fits and the module grid will lead with what
+          Pick the task that fits and the module grid will lead with what
           you&apos;ll need first.
         </p>
         <HomePathSection modules={modules} />

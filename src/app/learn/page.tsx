@@ -23,8 +23,9 @@ export default function LearnPage() {
           Pick a starting point.
         </h1>
         <p className="mt-5 max-w-3xl leading-7" style={{ color: "var(--muted)" }}>
-          Modules adapt to who&apos;s reading. You can ignore this and read in
-          order if you&apos;d rather.
+          Five short modules. Pick the task you showed up to do and the
+          grid leads with what helps that task. Skip the picker if
+          you&apos;d rather read in order.
         </p>
       </section>
 
