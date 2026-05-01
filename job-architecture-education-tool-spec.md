@@ -451,27 +451,29 @@ This whole section is rendered by widget `ArchitectureExplorer`. See §13 for th
 
 ## 7. Path selector
 
-A small interactive that re-orders modules based on the user's role. Defaults are sensible, so picking is optional.
+A small interactive that re-orders modules based on the user's **task**, not role. Most managers, HRBPs, and TR partners show up because they have a specific job to do. The selector picks the situation that matches that job and leads with the most useful module first. Defaults are sensible, so picking is optional.
 
 ### 7.1 Question
 
-> **What brings you here today?**
+> **What are you here to do?**
 
-### 7.2 Options
+### 7.2 Options (situation-based)
 
-| `id` | Label | Re-orders modules to lead with |
-|---|---|---|
-| `hrbp` | I'm an HRBP or People Partner | Calibration → How Leveling Works → Tracks → Architecture 101 → Pay Transparency |
-| `manager` | I'm a people manager preparing a leveling case | How Leveling Works → Tracks → Architecture 101 → Calibration → Pay Transparency |
-| `tr-leader` | I lead Total Rewards or Comp | Architecture 101 → Pay Transparency → Calibration → How Leveling Works → Tracks |
-| `curious` | I'm just looking around | (canonical order — no re-ordering) |
+| `id` | Label | Blurb | Re-orders modules to lead with |
+|---|---|---|---|
+| `level-new-role` | Level a new role | Sizing a job that hasn't existed before, or a job that just changed shape. | How Leveling Works → Tracks → Architecture 101 → Calibration → Pay Transparency |
+| `prepare-promotion` | Prepare a promotion request | Building the case for an internal promotion before HR reviews it. | How Leveling Works → Calibration → Tracks → Architecture 101 → Pay Transparency |
+| `explain-architecture` | Explain job architecture to a manager | Walking a leader through the model before any calibration or pay conversation. | Architecture 101 → Tracks → How Leveling Works → Pay Transparency → Calibration |
+| `calibrate-boundary` | Calibrate a boundary case | Working a role that sits between two levels and needs a defensible call. | Calibration → How Leveling Works → Tracks → Architecture 101 → Pay Transparency |
+| `clean-up-titles` | Clean up titles or career paths | Tightening a job family before posting ranges or running pay equity work. | Pay Transparency → Architecture 101 → Tracks → How Leveling Works → Calibration |
+| `just-looking` | Just looking around | Read the modules in their default order. | (canonical order, no re-ordering) |
 
 ### 7.3 Behavior
 
-- Five buttons, equal width on desktop, full-width stack on mobile.
+- Six buttons. On desktop, two or three columns; on mobile, single column.
 - Selection state: `accent-soft` background, `var(--accent)` border, bold label.
-- Picking a card animates the module grid into the new order (FLIP-style transitions, 200ms, gated on `prefers-reduced-motion`).
-- Reset link inline: "Show all five in the default order."
+- Order changes animate via a 200ms opacity replay (CSS keyframe on the grid wrapper, keyed by order signature). Reduced-motion users skip the animation.
+- Clear button inline: "Clear selection."
 
 ### 7.4 Drafted user-facing copy
 
