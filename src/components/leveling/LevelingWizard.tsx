@@ -756,6 +756,39 @@ function QuestionStep({
         </p>
       </div>
 
+      {dimension.whatThisMeans || dimension.commonMistake ? (
+        <details
+          className="mt-4 rounded-[8px] border p-3"
+          style={{
+            borderColor: "var(--line)",
+            background: "var(--surface-alt)",
+          }}
+        >
+          <summary
+            className="cursor-pointer text-sm font-semibold leading-6 marker:text-[var(--accent)]"
+            style={{ color: "var(--text)" }}
+          >
+            What this dimension means
+          </summary>
+          {dimension.whatThisMeans ? (
+            <p
+              className="mt-2 text-sm leading-6"
+              style={{ color: "var(--muted)" }}
+            >
+              {dimension.whatThisMeans}
+            </p>
+          ) : null}
+          {dimension.commonMistake ? (
+            <p
+              className="mt-2 text-sm leading-6"
+              style={{ color: "var(--muted)" }}
+            >
+              {dimension.commonMistake}
+            </p>
+          ) : null}
+        </details>
+      ) : null}
+
       <div className="mt-6 grid gap-3">
         {dimension.options.map((option) => {
           const selected = score === option.score;
@@ -1174,6 +1207,27 @@ function ResultStep({
 
       <Divider />
 
+      {/* Questions HR will likely ask */}
+      <ResultSection title="Questions HR will likely ask">
+        <ul className="grid gap-2">
+          {buildHrQuestions(result).map((question) => (
+            <li
+              key={question}
+              className="flex items-start gap-3 text-sm leading-6"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ background: "var(--accent)" }}
+              />
+              <span style={{ color: "var(--muted)" }}>{question}</span>
+            </li>
+          ))}
+        </ul>
+      </ResultSection>
+
+      <Divider />
+
       {/* Calibration prompt */}
       <ResultSection title="Take this into the calibration session">
         <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
@@ -1346,4 +1400,78 @@ function Divider() {
       style={{ background: "var(--line)" }}
     />
   );
+}
+
+/**
+ * Generate the "Questions HR will likely ask" coaching list. Two baseline
+ * questions always render; conditional ones come from the result shape so
+ * the user is prepared for the specific places a committee will probe.
+ *
+ * Order: baseline → boundary → confidence → flag → track-specific.
+ */
+function buildHrQuestions(result: LevelingResult): string[] {
+  const questions: string[] = [
+    "Can you describe the role without naming the person currently in it?",
+    "What two reference roles did you compare this against, one clearly below this level and one clearly above?",
+  ];
+
+  if (result.boundary) {
+    const [lower, higher] = result.boundary.split("/");
+    questions.push(
+      `What evidence would push this from ${lower} into ${higher}?`,
+    );
+  }
+
+  if (result.confidence === "Low") {
+    questions.push(
+      "Which two dimensions disagree the most, and what's the story behind that gap?",
+    );
+  } else if (result.confidence === "Medium") {
+    questions.push(
+      "Where is the score spread the widest, and is that a real feature of the role?",
+    );
+  } else {
+    questions.push(
+      "If you're highly confident in this read, what's the one piece of evidence a skeptic would push back on?",
+    );
+  }
+
+  if (result.flags.length > 0) {
+    questions.push(
+      "Which of the flagged inconsistencies would change the level if it turns out you're wrong about it?",
+    );
+  }
+
+  const scoreOf = (id: DimensionId): number =>
+    result.dimensionRows.find((row) => row.id === id)?.score ?? 7;
+
+  // Track-specific. Every track gets one question; the trigger picks the
+  // wording that fits the result.
+  if (result.roleType === "ic") {
+    questions.push(
+      "Where would this role plateau, and what's the path that unsticks it?",
+    );
+  } else if (result.roleType === "manager") {
+    if (scoreOf("peopleLeadership") <= 3) {
+      questions.push(
+        "Is this a manager role with real ownership of people outcomes, or a senior IC who coordinates work?",
+      );
+    } else {
+      questions.push(
+        "What does success look like for the team six months out under this role's ownership?",
+      );
+    }
+  } else if (result.roleType === "executive") {
+    if (scoreOf("strategyOwnership") <= 3) {
+      questions.push(
+        "What strategy does this role own end-to-end, versus contribute to?",
+      );
+    } else {
+      questions.push(
+        "What's the early signal this strategy is going off track, and how does the role catch it?",
+      );
+    }
+  }
+
+  return questions;
 }

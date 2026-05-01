@@ -21,6 +21,18 @@ export type Dimension = {
   title: string;
   shortLabel: string;
   prompt: string;
+  /**
+   * Short coaching note shown in a collapsible block below the dimension
+   * prompt. One sentence that re-anchors what the dimension is actually
+   * measuring, in plain language. Optional.
+   */
+  whatThisMeans?: string;
+  /**
+   * Short coaching note shown alongside `whatThisMeans`. One sentence on the
+   * pattern of misreading this dimension that the wizard wants to head off.
+   * Optional.
+   */
+  commonMistake?: string;
   options: DimensionOption[];
   appliesTo: "all" | "manager" | "executive";
 };
@@ -41,6 +53,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Scope",
     appliesTo: "all",
     prompt: "What does the role reliably own?",
+    whatThisMeans:
+      "Scope is what stops working when the role takes a week off. Score what the role reliably owns end-to-end.",
+    commonMistake:
+      "Confusing scope with workload. Volume of tasks does not move this score; the dimension measures what the role owns.",
     options: sevenPoint([
       ["Owns assigned tasks", "Delivers defined work with close direction."],
       ["Owns a small workstream", "Manages repeatable tasks or a narrow project area."],
@@ -57,6 +73,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Complexity",
     appliesTo: "all",
     prompt: "How ambiguous are the problems?",
+    whatThisMeans:
+      "Complexity is how often the role has to invent a new approach. New-pattern work raises this score.",
+    commonMistake:
+      "Reading 'hard' as complex. The dimension measures ambiguity, so well-defined hard work scores lower.",
     options: sevenPoint([
       ["Clear and repeatable", "Uses established instructions and known answers."],
       ["Mostly known", "Applies existing playbooks with occasional judgment."],
@@ -73,6 +93,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Autonomy",
     appliesTo: "all",
     prompt: "How independently does the role operate?",
+    whatThisMeans:
+      "Autonomy is the size of the call the role makes before checking in. Bigger calls with looser oversight push the score up.",
+    commonMistake:
+      "Confusing autonomy with manager absence. The dimension measures the size of the call the role makes alone.",
     options: sevenPoint([
       ["Needs regular direction", "Manager defines priorities, methods, and checkpoints."],
       ["Works with frequent guidance", "Owns tasks but needs help choosing approach."],
@@ -89,6 +113,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Influence",
     appliesTo: "all",
     prompt: "Whose decisions does the role change?",
+    whatThisMeans:
+      "Influence is whose mind the role can change. Score the highest-stakes audience the role moves regularly.",
+    commonMistake:
+      "Counting meetings attended. The dimension measures decisions that land differently because the role was there.",
     options: sevenPoint([
       ["Immediate team", "Influences day-to-day work with close peers."],
       ["Adjacent partners", "Coordinates with common partners or internal customers."],
@@ -105,6 +133,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Knowledge",
     appliesTo: "all",
     prompt: "What depth of expertise does the role require?",
+    whatThisMeans:
+      "Knowledge depth is what someone has to read or live through to do this role's work cleanly.",
+    commonMistake:
+      "Counting years of experience. A new hire with the right training can match a five-year veteran here.",
     options: sevenPoint([
       ["Basic job knowledge", "Learns core tools, processes, and terminology."],
       ["Working knowledge", "Applies common methods with guidance."],
@@ -121,6 +153,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Impact",
     appliesTo: "all",
     prompt: "How direct and material is the business impact?",
+    whatThisMeans:
+      "Business impact is the dollar, customer, or risk number the role moves directly. If the metric is two layers away, score lower.",
+    commonMistake:
+      "Counting strategic importance to the team. The dimension measures impact on the business.",
     options: sevenPoint([
       ["Limited direct impact", "Impact is mainly on individual task quality."],
       ["Team operating impact", "Improves team throughput, quality, or service."],
@@ -137,6 +173,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Leadership",
     appliesTo: "manager",
     prompt: "What people system does the role own?",
+    whatThisMeans:
+      "People leadership is whose performance, hiring, and growth the role actually owns end-to-end. Coordinating peers without ownership scores lower.",
+    commonMistake:
+      "Counting headcount on the org chart. The dimension measures who actually owns hiring, performance routines, and team outcomes.",
     options: sevenPoint([
       ["Coordinates work only", "May guide tasks but does not own people outcomes."],
       ["Leads a small team informally", "Provides daily guidance with limited formal accountability."],
@@ -153,6 +193,10 @@ export const dimensions: Dimension[] = [
     shortLabel: "Strategy",
     appliesTo: "executive",
     prompt: "What strategy does the role own?",
+    whatThisMeans:
+      "Strategy ownership is whose plan the role gets blamed for if it falls apart. Influencing a plan and owning a plan are different jobs.",
+    commonMistake:
+      "Confusing executive presence with strategy ownership. Speaking in the strategy meeting and signing off on the strategy are different jobs.",
     options: sevenPoint([
       ["Executes strategy", "Turns defined strategy into plans."],
       ["Influences local strategy", "Provides input to a function or market plan."],
