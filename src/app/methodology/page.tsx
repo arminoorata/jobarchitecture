@@ -12,6 +12,7 @@ type TocEntry = { id: string; label: string };
 
 const tocEntries: TocEntry[] = [
   { id: "purpose", label: "What this tool is for (and isn't)" },
+  { id: "privacy", label: "Privacy and what to keep out" },
   { id: "scoring", label: "Scoring model" },
   { id: "confidence", label: "Confidence rating" },
   { id: "boundary", label: "Boundary detection" },
@@ -96,6 +97,66 @@ export default function MethodologyPage() {
           decision engine, and it does not reproduce proprietary Radford,
           Mercer, or WTW level descriptors, point-factor methods, survey job
           descriptions, or job codes.
+        </p>
+      </section>
+
+      <section className="mt-12" aria-labelledby="privacy">
+        <h2
+          id="privacy"
+          className="text-2xl font-semibold tracking-tight md:text-3xl"
+        >
+          Privacy and what to keep out
+        </h2>
+        <p className="mt-4 leading-7" style={{ color: "var(--text)" }}>
+          Keep the following out of any input field, downloaded summary, or
+          screenshot you share from this site:
+        </p>
+        <ul
+          className="mt-3 list-disc space-y-2 pl-6 leading-7"
+          style={{ color: "var(--text)" }}
+        >
+          <li>Employee names or other identifiers.</li>
+          <li>
+            Compensation details such as base salary, bonus, equity, or
+            target incentive.
+          </li>
+          <li>
+            Protected-class information including age, race, gender, religion,
+            disability, parental status, or veteran status.
+          </li>
+          <li>
+            Confidential business plans such as upcoming reorganizations,
+            unannounced layoffs, or pending acquisitions.
+          </li>
+        </ul>
+        <p className="mt-5 leading-7" style={{ color: "var(--text)" }}>
+          What the tool does with your inputs:
+        </p>
+        <ul
+          className="mt-3 list-disc space-y-2 pl-6 leading-7"
+          style={{ color: "var(--text)" }}
+        >
+          <li>
+            Scores stay in your browser. Refreshing the page clears the
+            wizard. Closing the tab clears the calibration session.
+          </li>
+          <li>
+            The site does not log inputs to a server, write user data to
+            local storage, or send anything to a third party. The only saved
+            preference is your dark or light theme choice.
+          </li>
+          <li>
+            Downloaded text summaries are generated in the browser and saved
+            to your device. The site never sees them.
+          </li>
+        </ul>
+        <p
+          className="mt-5 text-sm italic leading-6"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Product behavior is a starting point, not a privacy guarantee.
+          Treat anything sensitive as off-limits even if the tool would not
+          retain it.
         </p>
       </section>
 
@@ -273,7 +334,16 @@ export default function MethodologyPage() {
           production Total Rewards work requires, you&apos;ll want licensed
           Radford or Aon resources (or your survey provider of choice). The
           tool intentionally does not reproduce proprietary level descriptors,
-          point-factor methods, or survey job content.
+          point-factor methods, or survey job content. The public Aon and
+          Radford framing this site references is listed under{" "}
+          <a
+            href="#sources"
+            className="underline underline-offset-4"
+            style={{ color: "var(--text)" }}
+          >
+            Sources
+          </a>
+          .
         </p>
       </section>
 

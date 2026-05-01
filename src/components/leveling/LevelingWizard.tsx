@@ -581,6 +581,36 @@ function RolePickerStep({
         for manager and executive tracks. If you&apos;re not sure, &ldquo;Not
         sure&rdquo; works just fine.
       </p>
+      <aside
+        aria-label="What to keep out of the wizard"
+        className="mt-5 rounded-[8px] border p-4 text-sm leading-6"
+        style={{
+          borderColor: "var(--line)",
+          background: "var(--surface-alt)",
+          color: "var(--muted)",
+        }}
+      >
+        <span
+          className="text-xs font-semibold uppercase tracking-[0.22em]"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Before you start
+        </span>
+        <p className="mt-2">
+          The wizard does not need employee names, pay numbers,
+          protected-class details, or confidential plans. Keep them out of
+          every field, and out of any summary you download. Scores stay in
+          your browser and clear when you refresh. See{" "}
+          <a
+            href="/methodology#privacy"
+            className="underline underline-offset-2"
+            style={{ color: "var(--text)" }}
+          >
+            Privacy and what to keep out
+          </a>{" "}
+          for the full list.
+        </p>
+      </aside>
       <div className="mt-6 grid gap-3 md:grid-cols-2">
         {roleTypeOptions.map((option) => (
           <button
@@ -1315,6 +1345,15 @@ function ResultStep({
           Start over
         </button>
       </div>
+
+      <p
+        className="mt-3 text-xs leading-5"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Reminder: the downloaded summary captures the scores you entered.
+        Keep employee names, pay, and protected-class details out of any
+        copy you forward.
+      </p>
 
       <p
         className="mt-6 text-sm italic"
