@@ -25,6 +25,12 @@ export type Block =
 export type ModuleSection = {
   id: string;
   heading: string;
+  /**
+   * One-sentence takeaway shown at the top of the step in the stepper UI.
+   * Distills the section's core insight so the reader knows the point
+   * before they decide whether to dig into the body. Optional.
+   */
+  takeaway?: string;
   blocks: Block[];
 };
 
@@ -65,6 +71,8 @@ const architectureModule: LearnModule = {
     {
       id: "start-with-the-work",
       heading: "Start with the work, not the person",
+      takeaway:
+        "Most pay conversations are really retention, performance, or leveling stacked together. Pull them apart and each one gets easier.",
       blocks: [
         {
           type: "paragraph",
@@ -94,11 +102,17 @@ const architectureModule: LearnModule = {
           footnote:
             "Performance, tenure, retention risk, and pay pressure are real. They just aren't the level.",
         },
+        {
+          type: "quiz",
+          quizId: "architecture-101-evidence",
+        },
       ],
     },
     {
       id: "the-six-layers",
       heading: "The six layers",
+      takeaway:
+        "Function, family, track, level, title, and market match. Once those six are clean, every downstream comp decision gets easier to defend.",
       blocks: [
         {
           type: "paragraph",
@@ -132,6 +146,8 @@ const architectureModule: LearnModule = {
     {
       id: "spine-of-total-rewards",
       heading: "Architecture is the spine of Total Rewards",
+      takeaway:
+        "Pay ranges, equity bands, promotion criteria, and pay equity all sit on top of architecture. Skip the architecture and the rest gets fragile.",
       blocks: [
         {
           type: "paragraph",
@@ -152,6 +168,8 @@ const architectureModule: LearnModule = {
     {
       id: "where-radford-aon-fit",
       heading: "Where Radford and Aon fit",
+      takeaway:
+        "This tool teaches the public model. Aon and Radford do the licensed survey work. Use both for the parts they're built for.",
       blocks: [
         {
           type: "paragraph",
@@ -161,16 +179,6 @@ const architectureModule: LearnModule = {
           type: "callout",
           severity: "info",
           body: "This tool teaches the public framing. For the actual job matching, market pricing, peer-group construction, and executive comp regression that big companies need, you'll want licensed Radford or Aon resources. I'm not going to reproduce proprietary level descriptors or survey job content here, and you don't want a free tool pretending to be your survey provider.",
-        },
-      ],
-    },
-    {
-      id: "quick-check",
-      heading: "Quick check",
-      blocks: [
-        {
-          type: "quiz",
-          quizId: "architecture-101-evidence",
         },
       ],
     },
@@ -197,6 +205,8 @@ const levelingModule: LearnModule = {
     {
       id: "six-dimensions",
       heading: "The six dimensions, in one minute",
+      takeaway:
+        "Six dimensions cover most of what makes one job bigger than another. Score the role on each, weight them, get a directional level.",
       blocks: [
         {
           type: "paragraph",
@@ -221,11 +231,17 @@ const levelingModule: LearnModule = {
           title: "Volume and complexity are different signals",
           body: "A role that processes 80 invoices a week is busy. A role that designs the invoice-approval policy across three legal entities is complex. They look the same on a calendar. They're not the same job.",
         },
+        {
+          type: "quiz",
+          quizId: "leveling-spot-the-dimension",
+        },
       ],
     },
     {
       id: "try-one-dimension",
       heading: "Try one dimension",
+      takeaway:
+        "Scoring one dimension makes the rest concrete. The hard part is calling the close ones with evidence.",
       blocks: [
         {
           type: "paragraph",
@@ -247,6 +263,8 @@ const levelingModule: LearnModule = {
     {
       id: "two-roles-side-by-side",
       heading: "Two roles, scored side by side",
+      takeaway:
+        "Side-by-side comparisons surface the dimensions doing the real work. The same total can come from very different combinations.",
       blocks: [
         {
           type: "paragraph",
@@ -275,6 +293,8 @@ const levelingModule: LearnModule = {
     {
       id: "manager-and-exec-add-a-dimension",
       heading: "Manager and executive add a seventh dimension",
+      takeaway:
+        "Managers add People Leadership. Executives add Strategy Ownership. Same six core dimensions, plus the one their track requires.",
       blocks: [
         {
           type: "paragraph",
@@ -291,6 +311,8 @@ const levelingModule: LearnModule = {
     {
       id: "what-the-engine-shows",
       heading: "What the engine actually shows you",
+      takeaway:
+        "A directional band, a confidence read, and the dimensions that lifted or dragged. Use the explanation to check whether the level holds up under calibration.",
       blocks: [
         {
           type: "paragraph",
@@ -309,16 +331,6 @@ const levelingModule: LearnModule = {
             ["Flags", "Inconsistencies worth a second look"],
             ["Calibration prompt", "A question to take into the calibration session"],
           ],
-        },
-      ],
-    },
-    {
-      id: "quick-check",
-      heading: "Quick check",
-      blocks: [
-        {
-          type: "quiz",
-          quizId: "leveling-spot-the-dimension",
         },
       ],
     },
@@ -345,6 +357,8 @@ const tracksModule: LearnModule = {
     {
       id: "three-ladders",
       heading: "Three ladders, one architecture",
+      takeaway:
+        "IC, manager, and executive scale through different things. Same architecture, three ways up.",
       blocks: [
         {
           type: "paragraph",
@@ -370,6 +384,8 @@ const tracksModule: LearnModule = {
     {
       id: "ic-roles",
       heading: "IC roles done right",
+      takeaway:
+        "Senior ICs scale through expertise, problem-solving, and influence. They aren't promoted because they got tired of waiting for management.",
       blocks: [
         {
           type: "paragraph",
@@ -390,6 +406,8 @@ const tracksModule: LearnModule = {
     {
       id: "lead-vs-manager",
       heading: "Manager: the lead-vs-manager line",
+      takeaway:
+        "Coordinating peers and owning a team are different jobs. The line is hiring, performance, and team outcomes.",
       blocks: [
         {
           type: "paragraph",
@@ -406,6 +424,8 @@ const tracksModule: LearnModule = {
     {
       id: "senior-mgr-vs-exec",
       heading: "Executive: the senior-manager-vs-exec line",
+      takeaway:
+        "The line is strategy ownership, not headcount or title. Some senior managers run bigger teams than VPs.",
       blocks: [
         {
           type: "paragraph",
@@ -425,11 +445,17 @@ const tracksModule: LearnModule = {
           type: "widget",
           widgetId: "TitleVsLevelInsight",
         },
+        {
+          type: "quiz",
+          quizId: "tracks-classify",
+        },
       ],
     },
     {
       id: "same-person-two-tracks",
       heading: "Same person, two tracks",
+      takeaway:
+        "A great IC can become a great manager and vice versa. Don't confuse great-at-this with should-do-the-other.",
       blocks: [
         {
           type: "worked-example",
@@ -442,16 +468,6 @@ const tracksModule: LearnModule = {
           ],
           footnote:
             "P5 and M4 may sit in similar pay-range neighborhoods when a company has intentionally mapped those levels as equivalent. Don't assume that without checking your own structure.",
-        },
-      ],
-    },
-    {
-      id: "quick-check",
-      heading: "Quick check",
-      blocks: [
-        {
-          type: "quiz",
-          quizId: "tracks-classify",
         },
       ],
     },
@@ -478,6 +494,8 @@ const calibrationModule: LearnModule = {
     {
       id: "shared-standard",
       heading: "Calibration builds a shared standard",
+      takeaway:
+        "Calibration is the practice of arguing toward consistency. It exists so the standard lives in the room, not in any one person's head.",
       blocks: [
         {
           type: "paragraph",
@@ -494,6 +512,8 @@ const calibrationModule: LearnModule = {
     {
       id: "bring-two-roles",
       heading: "Bring two roles",
+      takeaway:
+        "Two reference roles is the smallest useful unit for calibration. The comparison is what makes the level visible.",
       blocks: [
         {
           type: "paragraph",
@@ -514,6 +534,8 @@ const calibrationModule: LearnModule = {
     {
       id: "boundary-cases",
       heading: "Boundary cases reveal philosophy",
+      takeaway:
+        "Boundary cases show what your company actually values. The argument you record becomes the precedent for the next one.",
       blocks: [
         {
           type: "paragraph",
@@ -529,11 +551,17 @@ const calibrationModule: LearnModule = {
           title: "Document the why, not just the what",
           body: '"We placed this at P4" tells nobody anything. "We placed this at P4 because the role\'s influence is across a single product area and complexity is high but scoped" gives the next decision a precedent.',
         },
+        {
+          type: "quiz",
+          quizId: "calibration-evidence-vs-pressure",
+        },
       ],
     },
     {
       id: "govern-exceptions",
       heading: "Govern exceptions",
+      takeaway:
+        "Exceptions are fine. Undocumented exceptions become precedent and erode the standard.",
       blocks: [
         {
           type: "paragraph",
@@ -560,6 +588,8 @@ const calibrationModule: LearnModule = {
     {
       id: "worked-walk-through",
       heading: "Worked walk-through",
+      takeaway:
+        "Walk a real boundary case end to end. Predict, compare, and document the call so the next one has precedent.",
       blocks: [
         {
           type: "worked-example",
@@ -574,16 +604,6 @@ const calibrationModule: LearnModule = {
           ],
           footnote:
             "This is also one of the calibration scenarios in the practice lab. See §10.",
-        },
-      ],
-    },
-    {
-      id: "quick-check",
-      heading: "Quick check",
-      blocks: [
-        {
-          type: "quiz",
-          quizId: "calibration-evidence-vs-pressure",
         },
       ],
     },
@@ -611,6 +631,8 @@ const payTransparencyModule: LearnModule = {
     {
       id: "transparency-exposes-architecture",
       heading: "Transparency exposes architecture",
+      takeaway:
+        "Posted ranges and disclosed levels make architecture visible to candidates and employees. Whatever's loose gets seen.",
       blocks: [
         {
           type: "paragraph",
@@ -622,11 +644,17 @@ const payTransparencyModule: LearnModule = {
           title: "Don't post ranges before this",
           body: 'A clean title-to-level mapping. If "Senior Engineer" lands at three different levels in your data, that\'s where the credibility break will happen.',
         },
+        {
+          type: "quiz",
+          quizId: "transparency-title-level-check",
+        },
       ],
     },
     {
       id: "pay-equity-needs-clean-groupings",
       heading: "Pay equity needs clean groupings",
+      takeaway:
+        "Pay equity analysis only works if jobs are grouped by what they actually are. Title alone won't get you there.",
       blocks: [
         {
           type: "paragraph",
@@ -645,6 +673,8 @@ const payTransparencyModule: LearnModule = {
     {
       id: "maintenance-is-the-system",
       heading: "Maintenance is the system",
+      takeaway:
+        "Architecture decays if you don't maintain it. Schedule the cleanup the same way you schedule the audit.",
       blocks: [
         {
           type: "paragraph",
@@ -660,16 +690,6 @@ const payTransparencyModule: LearnModule = {
             ["Boundary cases", "Are the same kinds of cases coming back to calibration?"],
             ["Family changes", "Has any function reorganized in a way the families haven't caught?"],
           ],
-        },
-      ],
-    },
-    {
-      id: "quick-check",
-      heading: "Quick check",
-      blocks: [
-        {
-          type: "quiz",
-          quizId: "transparency-title-level-check",
         },
       ],
     },
