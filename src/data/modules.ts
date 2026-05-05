@@ -31,6 +31,11 @@ export type ModuleSection = {
 export type LearnModule = {
   id: string;
   title: string;
+  /**
+   * Outcome-framed title shown on the Learn module card. Falls back to
+   * `title` when absent. Page headings keep the formal `title` for SEO.
+   */
+  cardTitle?: string;
   icon: string;
   minutes: number;
   audience: string;
@@ -43,6 +48,7 @@ export type LearnModule = {
 const architectureModule: LearnModule = {
   id: "architecture",
   title: "Job Architecture 101",
+  cardTitle: "Separate the job from the person",
   icon: "🧱",
   minutes: 8,
   audience: "New and experienced people leaders",
@@ -174,6 +180,7 @@ const architectureModule: LearnModule = {
 const levelingModule: LearnModule = {
   id: "leveling",
   title: "How Leveling Works",
+  cardTitle: "Make a defensible level call",
   icon: "📐",
   minutes: 10,
   audience: "Managers preparing a level request or promotion case",
@@ -321,6 +328,7 @@ const levelingModule: LearnModule = {
 const tracksModule: LearnModule = {
   id: "tracks",
   title: "IC, Manager, and Executive Tracks",
+  cardTitle: "Pick the right career track",
   icon: "🪜",
   minutes: 9,
   audience: "Managers designing teams and HRBPs running track conversations",
@@ -453,6 +461,7 @@ const tracksModule: LearnModule = {
 const calibrationModule: LearnModule = {
   id: "calibration",
   title: "Calibration",
+  cardTitle: "Decide boundary cases with evidence",
   icon: "⚖️",
   minutes: 11,
   audience: "HRBPs and Total Rewards leaders running calibration sessions",
@@ -584,6 +593,7 @@ const calibrationModule: LearnModule = {
 const payTransparencyModule: LearnModule = {
   id: "pay-transparency",
   title: "Pay Transparency Readiness",
+  cardTitle: "Get ranges ready before you post",
   icon: "🪟",
   minutes: 7,
   audience:
