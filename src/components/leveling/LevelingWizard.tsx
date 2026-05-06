@@ -43,6 +43,8 @@ type WizardAction =
   | { type: "GO_PREV" }
   | { type: "GO_NEXT"; missingId: DimensionId | null; lastIndex: boolean }
   | { type: "GO_REVIEW" }
+  | { type: "GO_TO_ROLE" }
+  | { type: "GO_TO_RESULT" }
   | { type: "EDIT_DIMENSION"; index: number }
   | { type: "SUBMIT"; result: LevelingResult }
   | { type: "SUBMIT_FAILED" }
@@ -112,6 +114,10 @@ function reducer(state: WizardState, action: WizardAction): WizardState {
       };
     case "GO_REVIEW":
       return { ...state, step: "review", validationError: null };
+    case "GO_TO_ROLE":
+      return { ...state, step: "role", validationError: null };
+    case "GO_TO_RESULT":
+      return { ...state, step: "result", validationError: null };
     case "EDIT_DIMENSION":
       return {
         ...state,
@@ -321,6 +327,8 @@ export default function LevelingWizard() {
             questionIndex={questionIndex}
             scores={scores}
             validationError={validationError}
+            hasResult={result !== null}
+            dispatch={dispatch}
           />
         </div>
 
@@ -396,20 +404,30 @@ function StepIndicator({
   questionIndex,
   scores,
   validationError,
+  hasResult,
+  dispatch,
 }: {
   step: WizardStep;
   activeDimensions: Dimension[];
   questionIndex: number;
   scores: LevelingScores;
   validationError: DimensionId | null;
+  hasResult: boolean;
+  dispatch: React.Dispatch<WizardAction>;
 }) {
-  // Build a chip list: Role + each dimension + Review.
-  const chips: Array<{
+  // Build a chip list: Role + each dimension + Review + Result. Each chip
+  // carries an action so the chip can be clicked to jump back. The current
+  // chip is rendered as a non-interactive span so its visual differentiates
+  // it and screen readers don't treat it as a target.
+  type ChipState = "completed" | "current" | "future";
+  type Chip = {
     key: string;
     label: string;
-    state: "completed" | "current" | "future";
+    state: ChipState;
     error: boolean;
-  }> = [];
+    action: WizardAction | null;
+  };
+  const chips: Chip[] = [];
 
   const onRole = step === "role";
   chips.push({
@@ -417,10 +435,11 @@ function StepIndicator({
     label: "Role",
     state: onRole ? "current" : "completed",
     error: false,
+    action: onRole ? null : { type: "GO_TO_ROLE" },
   });
 
   activeDimensions.forEach((dimension, index) => {
-    let chipState: "completed" | "current" | "future" = "future";
+    let chipState: ChipState = "future";
     if (step === "questions") {
       if (index < questionIndex) chipState = "completed";
       else if (index === questionIndex) chipState = "current";
@@ -433,26 +452,33 @@ function StepIndicator({
       label: dimension.shortLabel,
       state: chipState,
       error: validationError === dimension.id,
+      action:
+        chipState === "current"
+          ? null
+          : { type: "EDIT_DIMENSION", index },
     });
   });
 
+  const onReview = step === "review";
   chips.push({
     key: "review",
     label: "Review",
-    state:
-      step === "review"
-        ? "current"
-        : step === "result"
-          ? "completed"
-          : "future",
+    state: onReview
+      ? "current"
+      : step === "result"
+        ? "completed"
+        : "future",
     error: false,
+    action: onReview ? null : { type: "GO_REVIEW" },
   });
 
+  const onResult = step === "result";
   chips.push({
     key: "result",
     label: "Result",
-    state: step === "result" ? "current" : "future",
+    state: onResult ? "current" : "future",
     error: false,
+    action: onResult || !hasResult ? null : { type: "GO_TO_RESULT" },
   });
 
   const totalSteps = chips.length;
@@ -527,21 +553,42 @@ function StepIndicator({
               : isCurrent
                 ? "var(--text)"
                 : "var(--text-muted)";
+          const sharedClass =
+            "rounded-full border px-3 py-1 text-xs font-medium transition-colors";
+          const sharedStyle = {
+            background,
+            borderColor,
+            color,
+          };
+          const errorSr = isError ? (
+            <span className="sr-only">, needs an answer</span>
+          ) : null;
+          if (!chip.action) {
+            return (
+              <li
+                key={chip.key}
+                aria-current={isCurrent ? "step" : undefined}
+                className={sharedClass}
+                style={sharedStyle}
+              >
+                {chip.label}
+                {errorSr}
+              </li>
+            );
+          }
+          const action = chip.action;
           return (
-            <li
-              key={chip.key}
-              aria-current={isCurrent ? "step" : undefined}
-              className="rounded-full border px-3 py-1 text-xs font-medium"
-              style={{
-                background,
-                borderColor,
-                color,
-              }}
-            >
-              {chip.label}
-              {isError ? (
-                <span className="sr-only">, needs an answer</span>
-              ) : null}
+            <li key={chip.key}>
+              <button
+                type="button"
+                onClick={() => dispatch(action)}
+                className={`${sharedClass} cursor-pointer hover:border-[var(--accent-strong)] hover:text-[var(--text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]`}
+                style={sharedStyle}
+                aria-label={`Go to ${chip.label}`}
+              >
+                {chip.label}
+                {errorSr}
+              </button>
             </li>
           );
         })}
