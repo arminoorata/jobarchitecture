@@ -85,9 +85,17 @@ function reducer(state: WizardState, action: WizardAction): WizardState {
         roleType: action.resolved,
       };
     case "SET_SCORE":
+      // Changing a score after a result was computed makes that result
+      // stale. Clear it so the Result chip greys out and the user has to
+      // run Review -> Submit again, instead of being shown an old result
+      // that no longer matches their inputs.
       return {
         ...state,
         scores: { ...state.scores, [action.id]: action.score },
+        result:
+          state.result && state.scores[action.id] !== action.score
+            ? null
+            : state.result,
         validationError:
           state.validationError === action.id ? null : state.validationError,
       };
