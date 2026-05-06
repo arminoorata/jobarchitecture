@@ -45,14 +45,16 @@ export function WidgetFrame({
   const reduced = useReducedMotion();
   const body = reduced ? fallback : children;
 
+  // The `wide` flag was an attempt to break out of the 720px reading column
+  // into the 1152px page-narrow container for side-by-side tables. The
+  // viewport-relative breakout combo (left-1/2 + right-1/2 + -mx-[50vw] +
+  // w-screen) renders unreliably across viewport widths and was visibly
+  // truncating tables on the live site. The role-shape and calibration
+  // tables both fit inside 720px (their min-widths are 640px and 560px), so
+  // the prop is now a no-op. Kept on the type so existing callsites compile.
+  void wide;
   return (
-    <figure
-      className={
-        wide
-          ? "relative left-1/2 right-1/2 -mx-[50vw] my-2 w-screen max-w-[1152px] -translate-x-1/2 px-4 sm:px-6 md:px-10"
-          : "my-2"
-      }
-    >
+    <figure className="my-2">
       <div
         className="rounded-[var(--radius-card)] border shadow-sm"
         style={{
